@@ -1,0 +1,16 @@
+{
+   "content_scripts": [ {
+      "css": [ "board-min.css", "rchess.css" ],
+      "js": [ "jquery.js", "pgnyui.js", "pgnviewer.js", "rchesspgn.js" ],
+      "matches": [ "http://www.reddit.com/*" ]
+   } ],
+   "description": "Puts a board in all Reddit pages with PGNs marked by [pgn][/pgn]",
+   "icons": {
+      "128": "knight.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+mX0OyPs/T1z+/DDeFSmp/9/qEdMYdC04dM87oBObtXqjsPEmGsuhLyZ4LkhBnOLdjAFc9niSsdjGDDjFTTCpwpqpJbfTxwLy3/xGYOFLLtIBGu3MzPzgONzxvQI7dCJrVeKk+5M57sIC4qLSDtMqknO7FW1/vF1/s56cSJzKCQIDAQAB",
+   "name": "Reddit PGN viewer.",
+   "permissions": [ "http://*.reddit.com/*" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.92"
+}
