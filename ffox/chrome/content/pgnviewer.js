@@ -8111,6 +8111,7 @@ var _460=this.boardName+"-piecestaken";
 var _461=YAHOO.util.Dom.get(_460);
 if(_461){
 if(_45f){
+ChessPiece.init();
 var _462=get_image_str(ChessPiece.pieceIconNames[_45e.colour][_45e.piece],this.boardImagePath,this.pieceSet,this.pieceTakenSize,this.addVersion);
 _461.innerHTML=_461.innerHTML+"<img src=\""+_462+"\"/>";
 }else{
