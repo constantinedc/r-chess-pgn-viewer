@@ -13,7 +13,7 @@ function pgnify(obj) {
 			var id = 'rchess'+numboards++;
 			var pgnstr = text.substring(start+5, end);
 			pgnstr = pgnstr.replace(/\[pgn\]|\[\/pgn\]/, '');
-			pgnstr = pgnstr.replace(/\//g, "\/");
+			pgnstr = pgnstr.replace(/\/\//, '\/\/');
 
 			if (pgnstr.length > 10){
 				pgnstr = pgnstr.replace(/<ol>\s<li>/g, '1.');
@@ -44,7 +44,7 @@ function pgnify(obj) {
 				this.innerHTML = this.innerHTML.replace(
 					///\[pgn\][\s\S]*\[\/pgn\]/gim, 
 					/\[pgn\][\s\S]*?\[\/pgn\]/im, 
-					"<div><div><b><span id='"+id+"-whitePlayer'></span><span id='"+id+"-whiteElo'></span><span id='"+id+"-dash'></span><span id='"+id+"-blackPlayer'></span><span id='"+id+"-blackElo'></span></b></div><div id='"+id+"-container'></div>" +"<div id='"+id+"-moves' class='rchess-moves'></div></div><div style='clear:both; padding-bottom:5px'></div>"
+					"<div><div><b><span id='"+id+"-whitePlayer'></span><span id='"+id+"-whiteElo'></span><span id='"+id+"-dash'></span><span id='"+id+"-blackPlayer'></span><span id='"+id+"-blackElo'></span></b></div><div id='"+id+"-container'></div>" +"<div id='"+id+"-moves' class='rchess-moves'></div></div><div id='"+id+"-piecestaken' class='piecetakencontainer'></div><div style='clear:both; padding-bottom:5px'></div>"
 				);
 
 				pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, "");
@@ -68,24 +68,20 @@ function pgnify(obj) {
 
 				if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
 					$('#'+id+'-dash')[0].innerHTML = ' - ';
-
-					//ratings.
-					if ($('#'+id+'-whiteElo').html().length > 0){
-						$('#'+id+'-whiteElo').html(' ('+$('#'+id+'-whiteElo').html()+')');
-					}
-					else {
-						$('#'+id+'-whiteElo').html('');
-					}
-					if ($('#'+id+'-blackElo').html().length > 0){
-						$('#'+id+'-blackElo').html(' ('+$('#'+id+'-blackElo').html()+')');
-					}
-					else {
-						$('#'+id+'-blackElo').html('');
-					}
 				}
-				else{
-					$('#'+id+'-blackElo').html('');
+
+				//ratings.
+				if ($('#'+id+'-whiteElo').html().length > 1){
+					$('#'+id+'-whiteElo').html(' ('+$('#'+id+'-whiteElo').html()+')');
+				}
+				else {
 					$('#'+id+'-whiteElo').html('');
+				}
+				if ($('#'+id+'-blackElo').html().length > 1){
+					$('#'+id+'-blackElo').html(' ('+$('#'+id+'-blackElo').html()+')');
+				}
+				else {
+					$('#'+id+'-blackElo').html('');
 				}
 
 				if ($('#chesstempolink').length == 0){
@@ -95,7 +91,7 @@ function pgnify(obj) {
 				}
 			}
 			else {
-				this.innerHTML = this.innerHTML.replace( /\[pgn\][\s\S]*?\[\/pgn\]/im, "[ pgn]"+pgnstr+"[ /pgn] (sans spaces)");
+				this.innerHTML = this.innerHTML.replace( /\[pgn\][\s\S]*?\[\/pgn\]/im, "[ pgn][ /pgn] (sans spaces)");
 			}
 
 			text = this.innerHTML;
@@ -105,10 +101,35 @@ function pgnify(obj) {
 	});
 }
 
+function loadscript(url, callback) {
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	script.src = url;
+	script.type = 'text/javascript';
+
+	var done = false;
+	script.onload = script.onreadystatechange = function() {
+		if(!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') ) {
+			done = true;
+			callback();
+
+			script.onload = script.onreadystatechange = null;
+			head.removeChild( script );
+		}
+	};
+
+	head.appendChild(script);
+}
+
 /*Load CSS and JS for chesstempo pgn viewer, process all nodes, then watch for future nodes*/
-//$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'http://chesstempo.com/css/board-min.css'));
-pgnify(document);
-$(document).bind('DOMNodeInserted', function(e){
-	if (!e) e = window.event;
-	pgnify(e.target);
+$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'chrome://rchesspgnviewer/content/board-min.css'));
+$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'chrome://rchesspgnviewer/content/rchess.css'));
+loadscript('chrome://rchesspgnviewer/content/pgnyui.js', function(){
+	loadscript('chrome://rchesspgnviewer/content/pgnviewer.js', function(){
+		pgnify(document);
+		$(document).bind('DOMNodeInserted', function(e){
+			if (!e) e = window.event;
+			pgnify(e.target);
+		});
+	});
 });

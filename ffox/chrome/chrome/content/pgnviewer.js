@@ -3216,7 +3216,6 @@ _103+=_105;
 return _103;
 };
 Board.prototype.updatePiece=function(_106,col,row,_109,_10a,_10b,_10c,_10d){
-ChessPiece.init();
 if(_10c){
 this.board_xy=null;
 if(_106.prePromotionRow){
