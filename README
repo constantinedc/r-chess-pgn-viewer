@@ -1,7 +1,11 @@
 Source code for r/chess pgn viewer. Chrome extension files in chrome folder,
 firefox in ffox folder. 
 
-todo: Actually make a useful readme.
+todo: 
+	Actually make a useful readme.
+	metadata.
+	play out on board.
+	show/save pgn.
 
 Checkout options:
 	canPasteFen
