@@ -1,6 +1,0 @@
-content   rchesspgnviewer                 chrome/content/
-content   rchesspgnviewer                 chrome/content/ contentaccessible=yes
-skin      rchesspgnviewer   classic/1.0   chrome/skin/
-locale    rchesspgnviewer   en-US         chrome/locale/en-US/
-
-overlay   chrome://browser/content/browser.xul   chrome://rchesspgnviewer/content/ff-overlay.xul
