@@ -3216,7 +3216,6 @@ _103+=_105;
 return _103;
 };
 Board.prototype.updatePiece=function(_106,col,row,_109,_10a,_10b,_10c,_10d){
-ChessPiece.init();
 if(_10c){
 this.board_xy=null;
 if(_106.prePromotionRow){
@@ -5521,6 +5520,7 @@ this.replaceIntoMoveDisplay(_2a7,_2a8,_2a9,_2ab,_2ac);
 }
 };
 Board.prototype.setCurrentMove=function(move,_2b7,_2b8){
+ChessPiece.init();
 if(!this.cloned&&this.currentMove!=null){
 if(this.currentMove.prev!=null){
 YAHOO.util.Dom.removeClass(this.boardName+"-m"+this.currentMove.prev.index,"ct-board-move-current");
