@@ -9,6 +9,7 @@ function pgnify(obj) {
 		
 		var lasttag;
 
+    //todo: find out why only the last board works if multiple pgn tags.
 		while (start > -1 && end > -1){
 			var id = 'rchess'+numboards++;
 			var pgnstr = text.substring(start+5, end);
@@ -25,9 +26,10 @@ function pgnify(obj) {
 					var ffragment = fragment.substring(lastdot-15, lastdot);
 					var tempfrag = '';
 					var num = NaN;
+
 					while (isNaN(num)){
 						var spacecheck = ffragment.length-1;
-						while (ffragment.charAt(spacecheck) != ' ') {
+            while (/\S/.test(ffragment.charAt(spacecheck))) {
 							spacecheck--;
 						}
 						num = parseInt(ffragment.substr(spacecheck))+1;
@@ -69,6 +71,7 @@ function pgnify(obj) {
 				if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
 					$('#'+id+'-dash')[0].innerHTML = ' - ';
 
+          ////todo:find out why this sometimes doesn't add brackets. See coloradosherrif test 01/06/13. I think that's part of the pgnviewer code. Might want to just use a space instead.
 					//ratings.
 					if ($('#'+id+'-whiteElo').html().length > 0){
 						$('#'+id+'-whiteElo').html(' ('+$('#'+id+'-whiteElo').html()+')');
