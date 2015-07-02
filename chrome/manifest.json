@@ -2,7 +2,7 @@
    "content_scripts": [ {
       "css": [ "board-min.css", "rchess.css" ],
       "js": [ "jquery.js", "pgnyui.js", "pgnviewer.js", "rchesspgn.js" ],
-      "matches": [ "http://www.reddit.com/*" ]
+      "matches": [ "*://*.reddit.com/*" ]
    } ],
    "description": "Puts a board in all Reddit pages with PGNs marked by [pgn][/pgn]",
    "icons": {
@@ -12,6 +12,6 @@
    "name": "Reddit PGN viewer.",
    "permissions": [ "http://*.reddit.com/*" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.92",
+   "version": "1.94",
    "manifest_version": 2
 }

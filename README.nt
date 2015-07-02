@@ -21,3 +21,8 @@ Checkout options:
 	this.showSite=1;
 	this.showDate=1;
 
+Updating in Chrome:
+	Make changes
+	Bump up version number in manifest.
+	Zip chrome folder as chrome.zip
+	Upload at chrome developer dashboard.

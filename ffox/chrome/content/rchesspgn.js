@@ -27,7 +27,7 @@ function pgnify(obj) {
 					var num = NaN;
 					while (isNaN(num)){
 						var spacecheck = ffragment.length-1;
-						while (ffragment.charAt(spacecheck) != ' ') {
+            while (/\S/.test(ffragment.charAt(spacecheck))) {
 							spacecheck--;
 						}
 						num = parseInt(ffragment.substr(spacecheck))+1;

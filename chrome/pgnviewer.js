@@ -1611,7 +1611,7 @@ console.log("after show game currentMove is null");
 };
 
 var SITE_VERSION=1;
-var clog=false;//cdctodo: change this back to false.
+var clog=false;
 var ctime=false;
 var cprof=false;
 var move_obj_id_counter=0;
