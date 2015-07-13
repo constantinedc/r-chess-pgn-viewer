@@ -10,7 +10,8 @@ todo:
 			chrome/content/overlay.js
 	metadata.
 	play out on board.
-	show/save pgn.
+	expose the option object to pass to the viewer
+	show/copy/save pgn.
 	multiple boards in one post
 	[fen]position[fen] instead of [pgn][fen position][/pgn]
 	this code
@@ -39,3 +40,8 @@ Updating in Chrome:
 	Bump up version number in manifest.
 	Zip chrome folder as chrome.zip
 	Upload at chrome developer dashboard.
+
+Updating in Firefox
+	Make changes
+	Bump up version number in package.json
+	run jpm xpi in the ffox folder
