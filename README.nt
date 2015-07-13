@@ -20,7 +20,9 @@ todo:
 		});
 		--the css stuff is already handled by the .css file
 		--make a change to declare this function outside the while loop and then just call it with the id. 
-	automate the packaging process for chrome/firefox using grunt
+	automate the packaging process for chrome/firefox using grunt - maybe use these two extension generators
+		https://www.phase2technology.com/so-you-want-to-build-a-chrome-extension/
+		https://github.com/dgil/generator-firefox-extension
 
 Checkout options:
 	canPasteFen
