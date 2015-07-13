@@ -108,35 +108,10 @@ function pgnify(obj) {
 	});
 }
 
-function loadscript(url, callback) {
-	var head = document.getElementsByTagName('head')[0];
-	var script = document.createElement('script');
-	script.src = url;
-	script.type = 'text/javascript';
-
-	var done = false;
-	script.onload = script.onreadystatechange = function() {
-		if(!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') ) {
-			done = true;
-			callback();
-
-			script.onload = script.onreadystatechange = null;
-			head.removeChild( script );
-		}
-	};
-
-	head.appendChild(script);
-}
-
 /*Load CSS and JS for chesstempo pgn viewer, process all nodes, then watch for future nodes*/
-$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'chrome://rchesspgnviewer/content/board-min.css'));
-$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'chrome://rchesspgnviewer/content/rchess.css'));
-loadscript('chrome://rchesspgnviewer/content/pgnyui.js', function(){
-	loadscript('chrome://rchesspgnviewer/content/pgnviewer.js', function(){
-		pgnify(document);
-		$(document).bind('DOMNodeInserted', function(e){
-			if (!e) e = window.event;
-			pgnify(e.target);
-		});
-	});
+//$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'http://chesstempo.com/css/board-min.css'));
+pgnify(document);
+$(document).bind('DOMNodeInserted', function(e){
+	if (!e) e = window.event;
+	pgnify(e.target);
 });
