@@ -11,8 +11,7 @@ todo:
 	metadata.
 	play out on board.
 	show/save pgn.
-	script to automatically generate bookmarlet link from this site:
-		http://chris.zarate.org/bookmarkleter
+	[fen]position[fen] instead of [pgn][fen position][/pgn]
 
 Checkout options:
 	canPasteFen
