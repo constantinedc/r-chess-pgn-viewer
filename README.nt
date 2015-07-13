@@ -2,12 +2,12 @@ Source code for r/chess pgn viewer. Chrome extension files in chrome folder,
 firefox in ffox folder. 
 
 todo: 
+	Actually make a useful readme, also, do this in .md
 	https
 		chrome
 			"matches": ["*://*.example.com/*"]
 		firefox
 			chrome/content/overlay.js
-	Actually make a useful readme.
 	metadata.
 	play out on board.
 	show/save pgn.
