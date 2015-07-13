@@ -11,6 +11,7 @@ todo:
 	metadata.
 	play out on board.
 	show/save pgn.
+	multiple boards in one post
 	[fen]position[fen] instead of [pgn][fen position][/pgn]
 	this code
 		}, function(){
@@ -19,6 +20,7 @@ todo:
 		});
 		--the css stuff is already handled by the .css file
 		--make a change to declare this function outside the while loop and then just call it with the id. 
+	automate the packaging process for chrome/firefox using grunt
 
 Checkout options:
 	canPasteFen
