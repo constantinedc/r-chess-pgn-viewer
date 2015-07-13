@@ -12,6 +12,13 @@ todo:
 	play out on board.
 	show/save pgn.
 	[fen]position[fen] instead of [pgn][fen position][/pgn]
+	this code
+		}, function(){
+			$('.ct-back, .ct-forward, .ct-start, .ct-end, .ct-play, .ct-stop').css('display', 'inline');
+			$($('#'+id+'-moves').children()[0]).remove();
+		});
+		--the css stuff is already handled by the .css file
+		--make a change to declare this function outside the while loop and then just call it with the id. 
 
 Checkout options:
 	canPasteFen

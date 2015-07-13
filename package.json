@@ -1,0 +1,14 @@
+{
+  "name": "rchess_pgn_viewer",
+  "version": "1.94.0",
+  "description": "extension for chrome/firefox for viewing pgn inline",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tingdc/r-chess-pgn-viewer.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2"
+  }
+}

@@ -91,7 +91,7 @@ function pgnify(obj) {
 					$('#'+id+'-whiteElo').html('');
 				}
 
-				if ($('#chesstempolink').length == 0){
+				if ($('#chesstempolink').length === 0){
 					$('body').append(
 						$("<small id='chesstempolink'>PGN viewer from: <a href='http://www.chesstempo.com'>chesstempo</a></small>")
 					);
