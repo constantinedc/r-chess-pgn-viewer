@@ -8,11 +8,13 @@ todo:
 		this.showRound=1;
 		this.showSite=1;
 		this.showDate=1;
-	play out on board (export fen to lichess analysis board?)
+	play out on board 
+		export fen to lichess analysis board?
+			http://en.lichess.org/analysis/r3kb1r/pp1n1ppp/3pn3/Q1pN4/8/2P5/PP3PPP/R3K1NR_w_KQkq_-_1_12?color=white
 	expose the option object to pass to the viewer so people can costumize the board.
 	show/copy/save pgn.
 	multiple boards in one post
-	[fen]position[fen] instead of [pgn][fen position][/pgn]
+	[fen]position[fen] instead of [pgn][fen position][/pgn] seems more intuitive to people.
 	a reddit bot to post fen image/link to external pgn viewer when seeing fen/pgn tags.
 		This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require
 		people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer.
