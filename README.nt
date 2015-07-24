@@ -3,37 +3,28 @@ firefox in ffox folder.
 
 todo: 
 	Actually make a useful readme, also, do this in .md
-	https
-		chrome
-			"matches": ["*://*.example.com/*"]
-		firefox
-			chrome/content/overlay.js
-	metadata.
-	play out on board.
-	expose the option object to pass to the viewer
+	show more metadata, or maybe put it in something that can be toggled, defaults to hidden.
+		this.showEvent=1;
+		this.showRound=1;
+		this.showSite=1;
+		this.showDate=1;
+	play out on board (export fen to lichess analysis board?)
+	expose the option object to pass to the viewer so people can costumize the board.
 	show/copy/save pgn.
 	multiple boards in one post
 	[fen]position[fen] instead of [pgn][fen position][/pgn]
-	this code
+	a reddit bot to post fen image/link to external pgn viewer when seeing fen/pgn tags.
+		This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require
+		people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer.
+	cleanup this code
 		}, function(){
 			$('.ct-back, .ct-forward, .ct-start, .ct-end, .ct-play, .ct-stop').css('display', 'inline');
 			$($('#'+id+'-moves').children()[0]).remove();
 		});
 		--the css stuff is already handled by the .css file
 		--make a change to declare this function outside the while loop and then just call it with the id. 
-	automate the packaging process for chrome/firefox using grunt - maybe use these two extension generators
-		https://www.phase2technology.com/so-you-want-to-build-a-chrome-extension/
-			current version was created using jpm
-				jpm init
-				jpm run
-		https://github.com/dgil/generator-firefox-extension
-
-Checkout options:
-	canPasteFen
-	this.showEvent=1;
-	this.showRound=1;
-	this.showSite=1;
-	this.showDate=1;
+	actually, cleanup everything.
+	automate the packaging process for chrome/firefox using grunt
 
 Updating in Chrome:
 	Make changes
@@ -43,5 +34,6 @@ Updating in Chrome:
 
 Updating in Firefox
 	Make changes
+	jpm run to test (jpm init if new)
 	Bump up version number in package.json
 	run jpm xpi in the ffox folder
