@@ -32,7 +32,7 @@ After every change, reload the extension from the extensions menu in chrome (`ch
 
 ##### For firefox
 
-After every change, run `jpm run` from the ffox folder. This should launch a new firefox instance with your latest changes.
+A Grunt task will build and launch a new Firefox instance with your latest changes.
 
 ### Packaging
 
