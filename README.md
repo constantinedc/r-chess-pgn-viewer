@@ -76,6 +76,8 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 
 * Automate the packaging process for chrome/firefox using grunt
 
+* Other browsers?
+
 ## License
 
 MIT
