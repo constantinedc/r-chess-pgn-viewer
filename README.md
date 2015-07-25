@@ -69,13 +69,13 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 
 * [fen]position[fen] instead of [pgn][fen position][/pgn] seems more intuitive to people.
 
+* Puzzle mode. Hide the move text until toggled to show.
+
 * A reddit bot to post fen image/link to external pgn viewer when seeing fen/pgn tags.
 
   This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer. We might want to hit up the guy who made the pgn viewer bot so we don't end up with multiple bots in the subreddit.
 
 * Other browsers?
-
-* Cleanup the code.
 
 * Automate the packaging process for chrome/firefox using grunt
 
