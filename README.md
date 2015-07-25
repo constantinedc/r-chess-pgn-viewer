@@ -21,7 +21,7 @@ Chrome extension files in chrome folder, firefox in ffox folder. We really only 
 ### Setup
 
 1. Clone repo to get local files.
-2. npm install
+2. `npm install`
 3. [Instructions](https://developer.chrome.com/extensions/getstarted#unpacked) for setting up chrome extension development locally.
 
 ### Making changes
@@ -45,7 +45,7 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 ##### For firefox
 
 1. Bump up version number in package.json
-2. run jpm xpi in the ffox folder.
+2. run `jpm xpi` in the ffox folder.
 
 ## TODO
 
