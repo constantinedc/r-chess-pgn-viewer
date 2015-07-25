@@ -1,5 +1,9 @@
 var numboards = 0;
 
+function onViewerInit(id){
+  $($('#'+id+'-moves').children()[0]).remove();
+}
+
 function pgnify(obj) {
 	$(obj).find('.usertext-body').each(function(){
 		var text = this.innerHTML;
@@ -60,9 +64,7 @@ function pgnify(obj) {
 					'newlineForEachMainMove': true,
 					'movesFormat': 'main_on_own_line',
 					'autoScrollMoves': true,
-				}, function(){
-					$($('#'+id+'-moves').children()[0]).remove();
-				});
+				}, onViewerInit(id));
 
 				if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
 					$('#'+id+'-dash')[0].innerHTML = ' - ';
