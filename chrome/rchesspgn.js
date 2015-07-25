@@ -6,10 +6,7 @@ function pgnify(obj) {
 		
 		var start = text.indexOf('[pgn]');
 		var end = text.indexOf('[/pgn]');
-		
-		var lasttag;
 
-    //todo: find out why only the last board works if multiple pgn tags.
 		while (start > -1 && end > -1){
 			var id = 'rchess'+numboards++;
 			var pgnstr = text.substring(start+5, end);
@@ -20,6 +17,7 @@ function pgnify(obj) {
 				pgnstr = pgnstr.replace(/<ol>\s<li>/g, '1.');
 				var li = pgnstr.search(/<\/li>[\s\S]*<li>/);
 
+        // handle reddit's markdown gorking the pgn text.
 				while(li && li!= -1){
 					var fragment = pgnstr.substring(0, li);
 					var lastdot = fragment.lastIndexOf('.');
@@ -62,16 +60,13 @@ function pgnify(obj) {
 					'newlineForEachMainMove': true,
 					'movesFormat': 'main_on_own_line',
 					'autoScrollMoves': true,
-					//'showCoordinates': true,
 				}, function(){
-					$('.ct-back, .ct-forward, .ct-start, .ct-end, .ct-play, .ct-stop').css('display', 'inline');
 					$($('#'+id+'-moves').children()[0]).remove();
 				});
 
 				if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
 					$('#'+id+'-dash')[0].innerHTML = ' - ';
 
-          ////todo:find out why this sometimes doesn't add brackets. See coloradosherrif test 01/06/13. I think that's part of the pgnviewer code. Might want to just use a space instead.
 					//ratings.
 					if ($('#'+id+'-whiteElo').html().length > 0){
 						$('#'+id+'-whiteElo').html(' ('+$('#'+id+'-whiteElo').html()+')');
@@ -108,8 +103,7 @@ function pgnify(obj) {
 	});
 }
 
-/*Load CSS and JS for chesstempo pgn viewer, process all nodes, then watch for future nodes*/
-//$('head').append($('<link>').attr('rel', 'stylesheet').attr('type', 'text/css').attr('href', 'http://chesstempo.com/css/board-min.css'));
+//Load CSS and JS for chesstempo pgn viewer, process all nodes, then watch for future nodes.
 pgnify(document);
 $(document).bind('DOMNodeInserted', function(e){
 	if (!e) e = window.event;

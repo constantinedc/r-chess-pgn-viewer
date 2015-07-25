@@ -28,7 +28,7 @@ Chrome extension files in chrome folder, firefox in ffox folder. We really only 
 
 ##### For chrome
 
-Your changes should take effect locally as soon as you change the file. If they don't, open up the extensions menu in chrome and reload the extension.
+After every change, reload the extension from the extensions menu in chrome (`chrome://extensions/`).
 
 ##### For firefox
 
@@ -46,6 +46,7 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 
 1. Bump up version number in package.json
 2. run `jpm xpi` in the ffox folder.
+3. Upload at firefox add-on developer hub.
 
 ## TODO
 
@@ -64,19 +65,23 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 
 * Expose the option object to pass to the viewer so people can costumize the board.
 
-* Multiple boards in one post - this is supported by putting them all in one tag, but multiple tags seems to be more intuitive to people.
+* Multiple boards in one post - this is supported by putting them all in one tag, but multiple tags seems to be more intuitive to people. There's unfortunately currently a bug with using multiple pgn tags in one post. Only the last board's controls work.
 
 * [fen]position[fen] instead of [pgn][fen position][/pgn] seems more intuitive to people.
 
 * A reddit bot to post fen image/link to external pgn viewer when seeing fen/pgn tags.
-  This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require
-  people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer. We might want to hit up the guy who made the pgn viewer bot so we don't end up with multiple bots in the subreddit.
+
+  This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer. We might want to hit up the guy who made the pgn viewer bot so we don't end up with multiple bots in the subreddit.
+
+* Other browsers?
 
 * Cleanup the code.
 
 * Automate the packaging process for chrome/firefox using grunt
 
-* Other browsers?
+* Instead of handling reddit's markdown gorking the pgn text, grab the source for the comment from reddit instead.
+
+* There's sometimes no brackets around the ratings. See coloradosherrif test 01/06/13. You can also trigger by switching games back and forth in multi game posts. I think that's part of the pgnviewer code. Might want to just use a space instead.
 
 ## License
 
