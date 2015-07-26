@@ -22,7 +22,7 @@ Chrome extension files in chrome folder, firefox in ffox folder. We really only 
 
 ### Setup
 
-1. Clone repo to get local files.
+1. Fork repo.
 2. `npm install`
 3. [Instructions](https://developer.chrome.com/extensions/getstarted#unpacked) for setting up chrome extension development locally.
 
