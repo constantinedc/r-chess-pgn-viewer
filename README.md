@@ -1,6 +1,6 @@
 # r/chess pgn viewer
 
-![](http://tingdc.github.io/pgnviewer.png)
+![](http://tingdc.github.io/pgnviewer2.png)
 
 View pgn boards inline on r/chess. 
 Current version: 1.94.0
