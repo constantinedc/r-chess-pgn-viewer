@@ -1,5 +1,7 @@
 # r/chess pgn viewer
 
+![](http://tingdc.github.io/pgnviewer.png)
+
 View pgn boards inline on r/chess. 
 Current version: 1.94.0
 
@@ -82,6 +84,8 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 * Instead of handling reddit's markdown gorking the pgn text, grab the source for the comment from reddit instead.
 
 * There's sometimes no brackets around the ratings. See coloradosherrif test 01/06/13. You can also trigger by switching games back and forth in multi game posts. I think that's part of the pgnviewer code. Might want to just use a space instead.
+
+* Move the todo items to issues tracker.
 
 ## License
 
