@@ -13,8 +13,6 @@ Current version: 1.94.0
 
 ## Contributing
 
-Chrome extension files in chrome folder, firefox in ffox folder. We really only care about two files, rchesspgn.js and rchess.css. They should be identical in both the chrome and ffox folders.
-
 ### Requirements
 
 1. npm
@@ -29,7 +27,7 @@ Chrome extension files in chrome folder, firefox in ffox folder. We really only 
 
 ### Making changes
 
-You should only have to make source code changes to the `core` and `viewer` folders. Use the following grunt tasks to handle copying the source files to the browser folders:
+You should only have to make source code changes to the `core` and `viewer` folders. `core` contains the actual code developed for this extension. `viewer` contains third party pgn viewers that we utilize. Use the following grunt tasks to handle copying the source files from both folders to the browser folders:
 
 `grunt clean` and `grunt copy` will wipe, and reapply all source files to the two browser folders respectively.
 
