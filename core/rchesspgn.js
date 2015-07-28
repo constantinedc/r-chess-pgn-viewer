@@ -1,10 +1,6 @@
 var numboards = 0;
 
-function onViewerInit(id){
-  $($('#'+id+'-moves').children()[0]).remove();
-}
-
-function pgnify(obj) {
+function processNodes(obj) {
   $(obj).find('.usertext-body').each(function(){
     var text = this.innerHTML;
     
@@ -12,7 +8,6 @@ function pgnify(obj) {
     var end = text.indexOf('[/pgn]');
 
     while (start > -1 && end > -1){
-      var id = 'rchess'+numboards++;
       var pgnstr = text.substring(start+5, end);
       pgnstr = pgnstr.replace(/\[pgn\]|\[\/pgn\]/, '');
       pgnstr = pgnstr.replace(/\//g, "\/");
@@ -45,54 +40,10 @@ function pgnify(obj) {
           li = pgnstr.search(/<\/li>[\s\S]<li>/);
         }
 
-        this.innerHTML = this.innerHTML.replace(
-          ///\[pgn\][\s\S]*\[\/pgn\]/gim, 
-          /\[pgn\][\s\S]*?\[\/pgn\]/im, 
-          "<div><div><b><span id='"+id+"-whitePlayer'></span><span id='"+id+"-whiteElo'></span><span id='"+id+"-dash'></span><span id='"+id+"-blackPlayer'></span><span id='"+id+"-blackElo'></span></b></div><div id='"+id+"-container'></div>" +"<div id='"+id+"-moves' class='rchess-moves'></div></div><div style='clear:both; padding-bottom:5px'></div>"
-        );
-
         pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, "");
         pgnstr = $.trim(pgnstr);
 
-        var viewer = new PgnViewer({
-          'boardName': id,
-          'pgnString': pgnstr,
-          'pieceSet' : 'merida',
-          'pieceSize': 35,
-          'loadImmediately': true,
-          'moveAnimationLength': 0.3,
-          'newlineForEachMainMove': true,
-          'movesFormat': 'main_on_own_line',
-          'autoScrollMoves': true,
-        }, onViewerInit(id));
-
-        if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
-          $('#'+id+'-dash')[0].innerHTML = ' - ';
-
-          //ratings.
-          if ($('#'+id+'-whiteElo').html().length > 0){
-            $('#'+id+'-whiteElo').html(' ('+$('#'+id+'-whiteElo').html()+')');
-          }
-          else {
-            $('#'+id+'-whiteElo').html('');
-          }
-          if ($('#'+id+'-blackElo').html().length > 0){
-            $('#'+id+'-blackElo').html(' ('+$('#'+id+'-blackElo').html()+')');
-          }
-          else {
-            $('#'+id+'-blackElo').html('');
-          }
-        }
-        else{
-          $('#'+id+'-blackElo').html('');
-          $('#'+id+'-whiteElo').html('');
-        }
-
-        if ($('#chesstempolink').length === 0){
-          $('body').append(
-            $("<small id='chesstempolink'>PGN viewer from: <a href='http://www.chesstempo.com'>chesstempo</a></small>")
-          );
-        }
+        injectViewer(this, pgnstr);
       }
       else {
         this.innerHTML = this.innerHTML.replace( /\[pgn\][\s\S]*?\[\/pgn\]/im, "[ pgn]"+pgnstr+"[ /pgn] (sans spaces)");
@@ -105,9 +56,63 @@ function pgnify(obj) {
   });
 }
 
+function onViewerInit(id){
+  $($('#'+id+'-moves').children()[0]).remove();
+}
+
+function injectViewer(node, pgnstr){
+  var id = 'rchess'+numboards++;
+
+  node.innerHTML = node.innerHTML.replace(
+    ///\[pgn\][\s\S]*\[\/pgn\]/gim, 
+    /\[pgn\][\s\S]*?\[\/pgn\]/im, 
+    "<div><div><b><span id='"+id+"-whitePlayer'></span><span id='"+id+"-whiteElo'></span><span id='"+id+"-dash'></span><span id='"+id+"-blackPlayer'></span><span id='"+id+"-blackElo'></span></b></div><div id='"+id+"-container'></div>" +"<div id='"+id+"-moves' class='rchess-moves'></div></div><div style='clear:both; padding-bottom:5px'></div>"
+  );
+
+  var viewer = new PgnViewer({
+    'boardName': id,
+    'pgnString': pgnstr,
+    'pieceSet' : 'merida',
+    'pieceSize': 35,
+    'loadImmediately': true,
+    'moveAnimationLength': 0.3,
+    'newlineForEachMainMove': true,
+    'movesFormat': 'main_on_own_line',
+    'autoScrollMoves': true,
+  }, onViewerInit(id));
+
+  if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
+    $('#'+id+'-dash')[0].innerHTML = ' - ';
+
+    //ratings.
+    if ($('#'+id+'-whiteElo').html().length > 0){
+      $('#'+id+'-whiteElo').html(' ('+$('#'+id+'-whiteElo').html()+')');
+    }
+    else {
+      $('#'+id+'-whiteElo').html('');
+    }
+    if ($('#'+id+'-blackElo').html().length > 0){
+      $('#'+id+'-blackElo').html(' ('+$('#'+id+'-blackElo').html()+')');
+    }
+    else {
+      $('#'+id+'-blackElo').html('');
+    }
+  }
+  else{
+    $('#'+id+'-blackElo').html('');
+    $('#'+id+'-whiteElo').html('');
+  }
+
+  if ($('#chesstempolink').length === 0){
+    $('body').append(
+      $("<small id='chesstempolink'>PGN viewer from: <a href='http://www.chesstempo.com'>chesstempo</a></small>")
+    );
+  }
+}
+
 //Load CSS and JS for chesstempo pgn viewer, process all nodes, then watch for future nodes.
-pgnify(document);
+processNodes(document);
 $(document).bind('DOMNodeInserted', function(e){
   if (!e) e = window.event;
-  pgnify(e.target);
+  processNodes(e.target);
 });
