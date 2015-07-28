@@ -61,47 +61,6 @@ After every change, run `jpm run` from the firefox folder. This should launch a 
 2. run `jpm xpi` in the ffox folder.
 3. Upload at firefox add-on developer hub.
 
-## TODO
-
-* Evaluate and switch to a different viewer.
-
-* Show/copy/download pgn.
-
-* Show more metadata. Maybe put it in something that can be toggled that defaults to hidden.
-  ```
-  this.showEvent=1;
-  this.showRound=1;
-  this.showSite=1;
-  this.showDate=1;
-  ```
-
-* Play out on board - we could export fen to lichess analysis board. Sample url:
-    `http://en.lichess.org/analysis/r3kb1r/pp1n1ppp/3pn3/Q1pN4/8/2P5/PP3PPP/R3K1NR_w_KQkq_-_1_12?color=white`
-
-* Expose the option object to pass to the viewer so people can costumize the board.
-
-* Multiple boards in one post - this is supported by putting them all in one tag, but multiple tags seems to be more intuitive to people. There's unfortunately currently a bug with using multiple pgn tags in one post. Only the last board's controls work.
-
-* [fen]position[fen] instead of [pgn][fen position][/pgn] seems more intuitive to people.
-
-* Puzzle mode. Hide the move text until toggled to show.
-
-* A reddit bot to post fen image/link to external pgn viewer when seeing fen/pgn tags.
-
-  This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer. We might want to hit up the guy who made the pgn viewer bot so we don't end up with multiple bots in the subreddit. Consider an imgur album as an extra option if nothing works for mobile.
-
-* Other browsers?
-
-* Automate the packaging process for chrome/firefox using grunt
-
-* Instead of handling reddit's markdown gorking the pgn text, grab the source for the comment from reddit instead.
-
-* There's sometimes no brackets around the ratings. See coloradosherrif test 01/06/13. You can also trigger by switching games back and forth in multi game posts. I think that's part of the pgnviewer code. Might want to just use a space instead.
-
-* Multiple viewers support?
-
-* Move the todo items to issues tracker.
-
 ## License
 
 MIT
