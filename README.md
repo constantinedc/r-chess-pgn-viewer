@@ -23,10 +23,21 @@ Chrome extension files in chrome folder, firefox in ffox folder. We really only 
 ### Setup
 
 1. Fork repo.
-2. `npm install`
+2. `npm install` to install dependencies.
+3. `grunt` to copy source files to the different browser folders.
 3. [Instructions](https://developer.chrome.com/extensions/getstarted#unpacked) for setting up chrome extension development locally.
 
 ### Making changes
+
+You should only have to make source code changes to the `core` and `viewer` folders. Use the following grunt tasks to handle copying the source files to the browser folders:
+
+`grunt clean` and `grunt copy` will wipe, and reapply all source files to the two browser folders respectively.
+
+`grunt watch` will set a watch on the source files so that any changes are automatically copied over to the browser folders.
+
+`grunt chrome` and `grunt firefox` will copy source files to their respective folders, and watch for further changes to copy over to their respective browser.
+
+### Testing changes
 
 ##### For chrome
 
@@ -34,7 +45,7 @@ After every change, reload the extension from the extensions menu in chrome (`ch
 
 ##### For firefox
 
-After every change, run `jpm run` from the ffox folder. This should launch a new firefox instance with your latest changes.
+After every change, run `jpm run` from the firefox folder. This should launch a new firefox instance with your latest changes.
 
 ### Packaging
 
@@ -51,6 +62,8 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 3. Upload at firefox add-on developer hub.
 
 ## TODO
+
+* Evaluate and switch to a different viewer.
 
 * Show/copy/download pgn.
 
@@ -75,7 +88,7 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 
 * A reddit bot to post fen image/link to external pgn viewer when seeing fen/pgn tags.
 
-  This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer. We might want to hit up the guy who made the pgn viewer bot so we don't end up with multiple bots in the subreddit.
+  This is the best thing I can think of to help people without the viewer, but I don't like that FEN would require people to have RES in order to view inline, and pgn would't be inline since it'd be to an external viewer. We might want to hit up the guy who made the pgn viewer bot so we don't end up with multiple bots in the subreddit. Consider an imgur album as an extra option if nothing works for mobile.
 
 * Other browsers?
 
@@ -84,6 +97,8 @@ After every change, run `jpm run` from the ffox folder. This should launch a new
 * Instead of handling reddit's markdown gorking the pgn text, grab the source for the comment from reddit instead.
 
 * There's sometimes no brackets around the ratings. See coloradosherrif test 01/06/13. You can also trigger by switching games back and forth in multi game posts. I think that's part of the pgnviewer code. Might want to just use a space instead.
+
+* Multiple viewers support?
 
 * Move the todo items to issues tracker.
 
