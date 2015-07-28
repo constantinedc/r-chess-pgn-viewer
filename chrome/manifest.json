@@ -1,7 +1,7 @@
 {
    "content_scripts": [ {
       "css": [ "board-min.css", "rchess.css" ],
-      "js": [ "jquery.js", "pgnyui.js", "pgnviewer.js", "rchesspgn.js" ],
+      "js": [ "jquery-2.1.4.min.js", "pgnyui.js", "pgnviewer.js", "rchesspgn.js" ],
       "matches": [ "*://*.reddit.com/*" ]
    } ],
    "description": "Puts a board in all Reddit pages with PGNs marked by [pgn][/pgn]",
