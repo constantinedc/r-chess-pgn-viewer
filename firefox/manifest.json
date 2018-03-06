@@ -13,5 +13,10 @@
    "permissions": [ "*://*.reddit.com/*" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
    "version": "1.95",
-   "manifest_version": 2
+   "manifest_version": 2,
+   "applications": {
+     "gecko": {
+       "id": "rchesspgnviewer@constantinedecastro.com"
+     }
+   }
 }

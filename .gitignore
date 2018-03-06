@@ -1,6 +1,8 @@
 node_modules
 **.xpi
 chrome/*
+firefox/*
 !chrome/manifest.json
+!firefox/manifest.json
 firefox/data/*
 
