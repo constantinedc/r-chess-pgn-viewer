@@ -10,8 +10,13 @@
    },
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+mX0OyPs/T1z+/DDeFSmp/9/qEdMYdC04dM87oBObtXqjsPEmGsuhLyZ4LkhBnOLdjAFc9niSsdjGDDjFTTCpwpqpJbfTxwLy3/xGYOFLLtIBGu3MzPzgONzxvQI7dCJrVeKk+5M57sIC4qLSDtMqknO7FW1/vF1/s56cSJzKCQIDAQAB",
    "name": "Reddit PGN viewer.",
-   "permissions": [ "http://*.reddit.com/*" ],
+   "permissions": [ "*://*.reddit.com/*" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.94",
-   "manifest_version": 2
+   "version": "1.95",
+   "manifest_version": 2,
+   "applications": {
+     "gecko": {
+       "id": "rchesspgnviewer@constantinedecastro.com"
+     }
+   }
 }

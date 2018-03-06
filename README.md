@@ -62,3 +62,10 @@ After every change, run `jpm run` from the firefox folder. This should launch a 
 ## License
 
 MIT
+
+manifest.json notes
+used by chrome only
+update_url
+key
+used by firefox only
+applications
