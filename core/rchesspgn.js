@@ -3,6 +3,7 @@ var numboards = 0;
 function processNodes(obj) {
   $(obj).find('.usertext-body').each(function(){
     var text = this.innerHTML;
+    var pgnFound = [];
     
     var start = text.indexOf('[pgn]');
     var end = text.indexOf('[/pgn]');
@@ -43,7 +44,9 @@ function processNodes(obj) {
         pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, "");
         pgnstr = $.trim(pgnstr);
 
-        injectViewer(this, pgnstr);
+        var id = 'rchess'+numboards++;
+        injectViewerHtml(this, id);
+        pgnFound.push({id:id, pgnstr:pgnstr});
       }
       else {
         this.innerHTML = this.innerHTML.replace( /\[pgn\][\s\S]*?\[\/pgn\]/im, "[ pgn]"+pgnstr+"[ /pgn] (sans spaces)");
@@ -53,6 +56,10 @@ function processNodes(obj) {
       start = text.indexOf('[pgn]');
       end = text.indexOf('[/pgn]');
     }
+
+    for (var i in pgnFound){
+      initializePgnViewer(pgnFound[i].id, pgnFound[i].pgnstr);
+    }
   });
 }
 
@@ -60,15 +67,20 @@ function onViewerInit(id){
   $($('#'+id+'-moves').children()[0]).remove();
 }
 
-function injectViewer(node, pgnstr){
-  var id = 'rchess'+numboards++;
-
+function injectViewerHtml(node, id){
   node.innerHTML = node.innerHTML.replace(
-    ///\[pgn\][\s\S]*\[\/pgn\]/gim, 
     /\[pgn\][\s\S]*?\[\/pgn\]/im, 
     "<div><div><b><span id='"+id+"-whitePlayer'></span><span id='"+id+"-whiteElo'></span><span id='"+id+"-dash'></span><span id='"+id+"-blackPlayer'></span><span id='"+id+"-blackElo'></span></b></div><div id='"+id+"-container'></div>" +"<div id='"+id+"-moves' class='rchess-moves'></div></div><div style='clear:both; padding-bottom:5px'></div>"
   );
 
+  if ($('#chesstempolink').length === 0){
+    $('body').append(
+      $("<small id='chesstempolink'>PGN viewer from: <a href='http://www.chesstempo.com'>chesstempo</a></small>")
+    );
+  }
+}
+
+function initializePgnViewer(id, pgnstr){
   var viewer = new PgnViewer({
     'boardName': id,
     'pgnString': pgnstr,
@@ -101,12 +113,6 @@ function injectViewer(node, pgnstr){
   else{
     $('#'+id+'-blackElo').html('');
     $('#'+id+'-whiteElo').html('');
-  }
-
-  if ($('#chesstempolink').length === 0){
-    $('body').append(
-      $("<small id='chesstempolink'>PGN viewer from: <a href='http://www.chesstempo.com'>chesstempo</a></small>")
-    );
   }
 }
 
