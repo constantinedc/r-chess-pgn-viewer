@@ -9,8 +9,8 @@ module.exports = function(grunt){
       },
       firefox: {
         files: [
-          {expand: true, flatten: true, src: ['core/*'], dest: 'firefox/data/'},
-          {expand: true, flatten: true, src: ['viewer/*'], dest: 'firefox/data/'},
+          {expand: true, flatten: true, src: ['core/*'], dest: 'firefox/'},
+          {expand: true, flatten: true, src: ['viewer/*'], dest: 'firefox/'},
         ]
       }
     },
@@ -28,7 +28,7 @@ module.exports = function(grunt){
 
     clean: {
       chrome: ["chrome/*", "!chrome/manifest.json"],
-      firefox: ["firefox/data/*"]
+      firefox: ["firefox/*", "!firefox/manifest.json"]
     },
 
     jshint: {
