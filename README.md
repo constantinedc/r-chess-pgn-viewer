@@ -3,7 +3,7 @@
 ![](http://tingdc.github.io/pgnviewer2.png)
 
 View pgn boards inline on r/chess. 
-Current version: 1.94.0
+Current version: 1.95.1
 
 ## Installation
 
@@ -27,7 +27,7 @@ Current version: 1.94.0
 
 ### Making changes
 
-You should only have to make source code changes to the `core` and `viewer` folders. `core` contains the actual code developed for this extension. `viewer` contains third party pgn viewers that we utilize. Use the following grunt tasks to handle copying the source files from both folders to the browser folders:
+You should only have to make source code changes to files in the `core` folder. `core` contains the actual code developed for this extension. `viewer` contains third party pgn viewers that we utilize. Use the following grunt tasks to handle copying the source files from both folders to the browser folders:
 
 `grunt clean` and `grunt copy` will wipe, and reapply all source files to the two browser folders respectively.
 
@@ -55,8 +55,8 @@ After every change, run `jpm run` from the firefox folder. This should launch a 
 
 ##### For firefox
 
-1. Bump up version number in package.json
-2. run `jpm xpi` in the ffox folder.
+1. Bump up version number in manifest
+2. Zip firefox folder
 3. Upload at firefox add-on developer hub.
 
 ## License
