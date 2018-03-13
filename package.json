@@ -1,6 +1,6 @@
 {
   "name": "rchess_pgn_viewer",
-  "version": "1.94.0",
+  "version": "1.95.1",
   "description": "extension for chrome/firefox for viewing pgn inline",
   "repository": {
     "type": "git",
@@ -10,9 +10,10 @@
     "copy:chrome": "cp viewer/* chrome && cp core/* chrome",
     "copy:firefox": "cp viewer/* firefox && cp core/* firefox",
     "copy": "npm run copy:chrome && npm run copy:firefox",
-    "watch": "echo watch",
-    "clean": "echo clean",
-    "lint": "echo todo"
+    "watch": "echo todo",
+    "clean": "echo todo",
+    "lint": "echo todo",
+    "zip": "echo todo"
   },
   "license": "MIT",
   "devDependencies": {
