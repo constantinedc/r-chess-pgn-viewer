@@ -5,4 +5,4 @@ firefox/*
 !chrome/manifest.json
 !firefox/manifest.json
 firefox/data/*
-
+output/*
