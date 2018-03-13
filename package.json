@@ -6,8 +6,19 @@
     "type": "git",
     "url": "https://github.com/tingdc/r-chess-pgn-viewer.git"
   },
+  "scripts": {
+    "copy:chrome": "cp viewer/* chrome && cp core/* chrome",
+    "copy:firefox": "cp viewer/* firefox && cp core/* firefox",
+    "copy": "npm run copy:chrome && npm run copy:firefox",
+    "watch": "echo watch",
+    "clean": "echo clean",
+    "lint": "echo todo"
+  },
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.8.0",
