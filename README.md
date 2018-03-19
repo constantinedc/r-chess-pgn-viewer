@@ -23,7 +23,8 @@ Current version: 1.95.1
 1. Fork repo.
 2. `npm install` to install dependencies.
 3. `grunt` to copy source files to the different browser folders.
-3. [Instructions](https://developer.chrome.com/extensions/getstarted#unpacked) for setting up chrome extension development locally.
+4. [Instructions](https://developer.chrome.com/extensions/getstarted#unpacked) for setting up chrome extension development locally.
+5. [Instructions](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Your_first_WebExtension#Installing) for setting up firefox extension development locally.
 
 ### Making changes
 
@@ -39,11 +40,11 @@ You should only have to make source code changes to files in the `core` folder. 
 
 ##### For chrome
 
-After every change, reload the extension from the extensions menu in chrome (`chrome://extensions/`).
+After every change, reload the extension from the extensions menu in chrome - [chrome://extensions](chrome://extensions/).
 
 ##### For firefox
 
-After every change, run `jpm run` from the firefox folder. This should launch a new firefox instance with your latest changes.
+After every change, reload the extension from the extension debugging menu in firefox - [about:debugging](about:debugging).
 
 ### Packaging
 
