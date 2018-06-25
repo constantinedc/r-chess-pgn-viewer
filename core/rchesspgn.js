@@ -15,7 +15,8 @@ function processNodes(obj) {
 
       if (pgnstr.length > 10){
         pgnstr = pgnstr.replace(/<ol(?: [^>]*)?>\s?<li(?: [^>]*)?>/g, '1.');
-        var li = pgnstr.search(/<\/li>[\s\S]*<li(?: [^>]*)?>/);
+        var liSearch = /<\/li>[\s\S]*<li(?: [^>]*)?>/;
+        var li = pgnstr.search(liSearch);
 
         // handle reddit's markdown gorking the pgn text.
         while(li && li!= -1){
@@ -36,9 +37,9 @@ function processNodes(obj) {
             lastdot = tempfrag.lastIndexOf('.');
             ffragment = tempfrag.substring(lastdot-15, lastdot);
           }
-          pgnstr = pgnstr.replace(/<\/li>[\s\S]<li>/, ' '+num+'.');
+          pgnstr = pgnstr.replace(liSearch, ' '+num+'.');
 
-          li = pgnstr.search(/<\/li>[\s\S]<li>/);
+          li = pgnstr.search(liSearch);
         }
 
         pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, "");
