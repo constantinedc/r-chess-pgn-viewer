@@ -15,7 +15,6 @@ function processNodes(obj) {
 
       if (pgnstr.length > 10){
         pgnstr = pgnstr.replace(/<ol(?: [^>]*)?>\s?<li(?: [^>]*)?>/g, '1.');
-        alert(pgnstr);
         var li = pgnstr.search(/<\/li>[\s\S]*<li(?: [^>]*)?>/);
 
         // handle reddit's markdown gorking the pgn text.
