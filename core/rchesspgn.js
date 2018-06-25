@@ -42,7 +42,7 @@ function processNodes(obj) {
           li = pgnstr.search(liSearch);
         }
 
-        pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, "");
+        pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
         pgnstr = $.trim(pgnstr);
 
         var id = 'rchess'+numboards++;
