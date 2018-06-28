@@ -42,6 +42,7 @@ function processNodes(obj) {
           li = pgnstr.search(liSearch);
         }
 
+        pgnstr = pgnstr.replace(/<\/?a(?: [^>]*)?(>|$)/g, "");
         pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
         pgnstr = $.trim(pgnstr);
 
