@@ -91,6 +91,7 @@ function initializePgnViewer(id, pgnstr){
     'newlineForEachMainMove': true,
     'movesFormat': 'main_on_own_line',
     'autoScrollMoves': true,
+    'hidePGNErrors': true
   }, onViewerInit(id));
 
   if ($('#'+id+'-whitePlayer')[0].innerHTML.length){
