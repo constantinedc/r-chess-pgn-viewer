@@ -14,8 +14,8 @@ function processNodes(obj) {
       pgnstr = pgnstr.replace(/\//g, "\/");
 
       if (pgnstr.length > 10){
-        pgnstr = pgnstr.replace(/<ol(?: [^>]*)?>\s?<li(?: [^>]*)?>/g, '1.');
-        var liSearch = /<\/li>[^<]*<li(?: [^>]*)?>/;
+        pgnstr = pgnstr.replace(/<ol.*?>\s?<li.*?>/g, '1.');
+        var liSearch = /<\/li>[^<]*<li.*?>/;
         var li = pgnstr.search(liSearch);
 
         // handle reddit's markdown gorking the pgn text.
@@ -42,7 +42,7 @@ function processNodes(obj) {
           li = pgnstr.search(liSearch);
         }
 
-        pgnstr = pgnstr.replace(/<\/?a(?: [^>]*)?(>|$)/g, "");
+        pgnstr = pgnstr.replace(/<\/?a.*?(>|$)/g, "");
         pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
         pgnstr = $.trim(pgnstr);
 
