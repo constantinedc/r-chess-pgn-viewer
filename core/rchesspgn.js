@@ -1,10 +1,10 @@
 var numboards = 0;
 
 function processNodes(obj) {
-  $(obj).find('.usertext-body').each(function(){
+  $(obj).find('.usertext-body, .Post, .Comment').each(function(){
     var text = this.innerHTML;
     var pgnFound = [];
-    
+
     var start = text.indexOf('[pgn]');
     var end = text.indexOf('[/pgn]');
 
@@ -14,8 +14,9 @@ function processNodes(obj) {
       pgnstr = pgnstr.replace(/\//g, "\/");
 
       if (pgnstr.length > 10){
-        pgnstr = pgnstr.replace(/<ol>\s<li>/g, '1.');
-        var li = pgnstr.search(/<\/li>[\s\S]*<li>/);
+        pgnstr = pgnstr.replace(/<ol.*?>\s?<li.*?>/g, '1.');
+        var liSearch = /<\/li>[^<]*<li.*?>/;
+        var li = pgnstr.search(liSearch);
 
         // handle reddit's markdown gorking the pgn text.
         while(li && li!= -1){
@@ -36,12 +37,13 @@ function processNodes(obj) {
             lastdot = tempfrag.lastIndexOf('.');
             ffragment = tempfrag.substring(lastdot-15, lastdot);
           }
-          pgnstr = pgnstr.replace(/<\/li>[\s\S]<li>/, ' '+num+'.');
+          pgnstr = pgnstr.replace(liSearch, ' '+num+'.');
 
-          li = pgnstr.search(/<\/li>[\s\S]<li>/);
+          li = pgnstr.search(liSearch);
         }
 
-        pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, "");
+        pgnstr = pgnstr.replace(/<\/?a.*?(>|$)/g, "");
+        pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
         pgnstr = $.trim(pgnstr);
 
         var id = 'rchess'+numboards++;
@@ -69,7 +71,7 @@ function onViewerInit(id){
 
 function injectViewerHtml(node, id){
   node.innerHTML = node.innerHTML.replace(
-    /\[pgn\][\s\S]*?\[\/pgn\]/im, 
+    /\[pgn\][\s\S]*?\[\/pgn\]/im,
     "<div><div><b><span id='"+id+"-whitePlayer'></span><span id='"+id+"-whiteElo'></span><span id='"+id+"-dash'></span><span id='"+id+"-blackPlayer'></span><span id='"+id+"-blackElo'></span></b></div><div id='"+id+"-container'></div>" +"<div id='"+id+"-moves' class='rchess-moves'></div></div><div style='clear:both; padding-bottom:5px'></div>"
   );
 
