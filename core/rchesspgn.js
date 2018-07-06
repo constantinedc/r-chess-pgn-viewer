@@ -2,17 +2,17 @@ var numboards = 0;
 
 function processNodes(obj) {
   $(obj).find([
-      // old reddit
-      '.usertext-body',
-      // new reddit in card mode
-      '.Post .md',
-      // new reddit post text in comments
-      '.Post [data-test-id="post-content"] > div:nth-of-type(4)',
-      // new reddit comments in profile overview
-      '.Comment .md',
-      // new reddit comments
-      '.Comment > div:nth-of-type(2) > div:last-of-type > div:first-of-type'
-    ].join(',')).each(function(){
+    // old reddit
+    '.usertext-body',
+    // new reddit in card mode
+    '.Post .md',
+    // new reddit post text in comments
+    '.Post [data-test-id="post-content"] > div:nth-of-type(4)',
+    // new reddit comments in profile overview
+    '.Comment .md',
+    // new reddit comments
+    '.Comment > div:nth-of-type(2) > div:last-of-type > div:first-of-type'
+  ].join(',')).each(function(){
     var text = this.innerHTML;
     var pgnFound = [];
 
@@ -25,8 +25,8 @@ function processNodes(obj) {
       pgnstr = pgnstr.replace(/\//g, "\/");
 
       if (pgnstr.length > 10){
-        pgnstr = pgnstr.replace(/<ol(?: [^>]*)?>\s?<li(?: [^>]*)?>/g, '1.');
-        var liSearch = /<\/li>[^<]*<li(?: [^>]*)?>/;
+        pgnstr = pgnstr.replace(/<ol.*?>\s?<li.*?>/g, '1.');
+        var liSearch = /<\/li>[^<]*<li.*?>/;
         var li = pgnstr.search(liSearch);
 
         // handle reddit's markdown gorking the pgn text.
@@ -53,7 +53,7 @@ function processNodes(obj) {
           li = pgnstr.search(liSearch);
         }
 
-        pgnstr = pgnstr.replace(/<\/?a(?: [^>]*)?(>|$)/g, "");
+        pgnstr = pgnstr.replace(/<\/?a.*?(>|$)/g, "");
         pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
         pgnstr = $.trim(pgnstr);
 
