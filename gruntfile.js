@@ -51,5 +51,6 @@ module.exports = function(grunt){
   grunt.registerTask('chrome', ['copy:chrome', 'watch:chrome']);
   grunt.registerTask('firefox', ['copy:firefox', 'watch:firefox']);
 
-  grunt.registerTask("package", ["jshint"]);//stub for other package tasks - grunt bump, zip chrome, jpm xpi at firefox.
+  grunt.registerTask("package", ["jshint"]);//stub for other package tasks - bump version no on chrome/firefox manifest.json, zip both
+	//it looks like there's an api for publishing to chrome's web store now: https://developer.chrome.com/webstore/using_webstore_api
 }
