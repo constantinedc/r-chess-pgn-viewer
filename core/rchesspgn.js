@@ -8,8 +8,10 @@ function processNodes(obj) {
       '.Post .md',
       // new reddit post text in comments
       '.Post [data-test-id="post-content"] > div:nth-of-type(4)',
+      // new reddit comments in profile overview
+      '.Comment .md',
       // new reddit comments
-      '.Comment > div:last-of-type > div:last-of-type > div:first-of-type'
+      '.Comment > div:nth-of-type(2) > div:last-of-type > div:first-of-type'
     ].join(',')).each(function(){
     var text = this.innerHTML;
     var pgnFound = [];
