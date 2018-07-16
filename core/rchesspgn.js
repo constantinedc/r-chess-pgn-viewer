@@ -1,68 +1,73 @@
 var numboards = 0;
 
 function processNodes(obj) {
-  $(obj).find('.usertext-body, .Post, .Comment').each(function(){
-    var text = this.innerHTML;
-    var pgnFound = [];
+  $(obj)
+    .find('.usertext-body, .Post div, .Comment div, div.md')
+    .filter(function(){
+      return !$(this).find('div').length && this.innerHTML.indexOf('[pgn]') !== -1;
+    })
+    .each(function(){
+      var text = this.innerHTML;
+      var pgnFound = [];
 
-    var start = text.indexOf('[pgn]');
-    var end = text.indexOf('[/pgn]');
+      var start = text.indexOf('[pgn]');
+      var end = text.indexOf('[/pgn]');
 
-    while (start > -1 && end > -1){
-      var pgnstr = text.substring(start+5, end);
-      pgnstr = pgnstr.replace(/\[pgn\]|\[\/pgn\]/, '');
-      pgnstr = pgnstr.replace(/\//g, "\/");
+      while (start > -1 && end > -1){
+        var pgnstr = text.substring(start+5, end);
+        pgnstr = pgnstr.replace(/\[pgn\]|\[\/pgn\]/, '');
+        pgnstr = pgnstr.replace(/\//g, "\/");
 
-      if (pgnstr.length > 10){
-        pgnstr = pgnstr.replace(/<ol.*?>\s?<li.*?>/g, '1.');
-        var liSearch = /<\/li>[^<]*<li.*?>/;
-        var li = pgnstr.search(liSearch);
+        if (pgnstr.length > 10){
+          pgnstr = pgnstr.replace(/<ol.*?>\s?<li.*?>/g, '1.');
+          var liSearch = /<\/li>[^<]*<li.*?>/;
+          var li = pgnstr.search(liSearch);
 
-        // handle reddit's markdown gorking the pgn text.
-        while(li && li!= -1){
-          var fragment = pgnstr.substring(0, li);
-          var lastdot = fragment.lastIndexOf('.');
-          var ffragment = fragment.substring(lastdot-15, lastdot);
-          var tempfrag = '';
-          var num = NaN;
+          // handle reddit's markdown gorking the pgn text.
+          while(li && li!= -1){
+            var fragment = pgnstr.substring(0, li);
+            var lastdot = fragment.lastIndexOf('.');
+            var ffragment = fragment.substring(lastdot-15, lastdot);
+            var tempfrag = '';
+            var num = NaN;
 
-          while (isNaN(num)){
-            var spacecheck = ffragment.length-1;
-            while (/\S/.test(ffragment.charAt(spacecheck))) {
-              spacecheck--;
+            while (isNaN(num)){
+              var spacecheck = ffragment.length-1;
+              while (/\S/.test(ffragment.charAt(spacecheck))) {
+                spacecheck--;
+              }
+              num = parseInt(ffragment.substr(spacecheck))+1;
+
+              tempfrag = fragment.substr(0, lastdot-3);
+              lastdot = tempfrag.lastIndexOf('.');
+              ffragment = tempfrag.substring(lastdot-15, lastdot);
             }
-            num = parseInt(ffragment.substr(spacecheck))+1;
+            pgnstr = pgnstr.replace(liSearch, ' '+num+'.');
 
-            tempfrag = fragment.substr(0, lastdot-3);
-            lastdot = tempfrag.lastIndexOf('.');
-            ffragment = tempfrag.substring(lastdot-15, lastdot);
+            li = pgnstr.search(liSearch);
           }
-          pgnstr = pgnstr.replace(liSearch, ' '+num+'.');
 
-          li = pgnstr.search(liSearch);
+          pgnstr = pgnstr.replace(/<\/?a.*?(>|$)/g, "");
+          pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
+          pgnstr = $.trim(pgnstr);
+
+          var id = 'rchess'+numboards++;
+          injectViewerHtml(this, id);
+          pgnFound.push({id:id, pgnstr:pgnstr});
+        }
+        else {
+          this.innerHTML = this.innerHTML.replace( /\[pgn\][\s\S]*?\[\/pgn\]/im, "[ pgn]"+pgnstr+"[ /pgn] (sans spaces)");
         }
 
-        pgnstr = pgnstr.replace(/<\/?a.*?(>|$)/g, "");
-        pgnstr = pgnstr.replace(/<\/?[^>]+(>|$)/g, " ");
-        pgnstr = $.trim(pgnstr);
-
-        var id = 'rchess'+numboards++;
-        injectViewerHtml(this, id);
-        pgnFound.push({id:id, pgnstr:pgnstr});
-      }
-      else {
-        this.innerHTML = this.innerHTML.replace( /\[pgn\][\s\S]*?\[\/pgn\]/im, "[ pgn]"+pgnstr+"[ /pgn] (sans spaces)");
+        text = this.innerHTML;
+        start = text.indexOf('[pgn]');
+        end = text.indexOf('[/pgn]');
       }
 
-      text = this.innerHTML;
-      start = text.indexOf('[pgn]');
-      end = text.indexOf('[/pgn]');
-    }
-
-    for (var i in pgnFound){
-      initializePgnViewer(pgnFound[i].id, pgnFound[i].pgnstr);
-    }
-  });
+      for (var i in pgnFound){
+        initializePgnViewer(pgnFound[i].id, pgnFound[i].pgnstr);
+      }
+    });
 }
 
 function onViewerInit(id){
