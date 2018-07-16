@@ -4,7 +4,7 @@ function processNodes(obj) {
   $(obj)
     .find('.usertext-body, .Post div, .Comment div, div.md')
     .filter(function(){
-      return !$(this).find('div').length && this.innerHTML.includes('[pgn]');
+      return !$(this).find('div').length && this.innerHTML.indexOf('[pgn]') !== -1;
     })
     .each(function(){
       var text = this.innerHTML;
